@@ -1,3 +1,15 @@
+IF EXISTS (SELECT name FROM sys.databases WHERE name = 'pizzeria')
+BEGIN
+    DROP DATABASE pizzeria;
+END
+
+-- Create the new database
+CREATE DATABASE pizzeria;
+GO
+
+-- Use the new database
+USE pizzeria;
+GO
 
 IF OBJECT_ID('User', 'U') IS NOT NULL
     DROP TABLE [User];
@@ -83,46 +95,46 @@ ALTER TABLE [Pizza_Order_Product] ADD FOREIGN KEY ([order_id]) REFERENCES [Pizza
 ALTER TABLE [Pizza_Order_Product] ADD FOREIGN KEY ([product_name]) REFERENCES [Product] ([name]);
 
 -- -- Insert statements for 20 users with realistic names
-INSERT INTO [User] (username, [password], first_name, last_name, [role]) VALUES
-('jdoe', 'wachtwoord', 'John', 'Doe', 'Client'),
-('mvermeer', 'wachtwoord', 'Maria', 'Vermeer', 'Client'),
-('rdeboer', 'wachtwoord', 'Rik', 'de Boer', 'Personnel'),
-('sbakker', 'wachtwoord', 'Sophie', 'Bakker', 'Personnel'),
-('fholwerda', 'wachtwoord', 'Fenna', 'Holwerda', 'Client'),
-('kdijkstra', 'wachtwoord', 'Klaas', 'Dijkstra', 'Client'),
-('lheineken', 'wachtwoord', 'Lucas', 'Heineken', 'Personnel'),
-('mvandam', 'wachtwoord', 'Mila', 'van Dam', 'Personnel'),
-('gkoolstra', 'wachtwoord', 'Gert', 'Koolstra', 'Client'),
-('evisscher', 'wachtwoord', 'Emma', 'Visscher', 'Client'),
-('tjanssen', 'wachtwoord', 'Tom', 'Janssen', 'Personnel'),
-('abrouwer', 'wachtwoord', 'Anna', 'Brouwer', 'Personnel'),
-('wbos', 'wachtwoord', 'Willem', 'Bos', 'Client'),
-('tvandermeer', 'wachtwoord', 'Tessa', 'van der Meer', 'Client'),
-('rkramer', 'wachtwoord', 'Rob', 'Kramer', 'Personnel'),
-('mnijland', 'wachtwoord', 'Maud', 'Nijland', 'Personnel'),
-('dschouten', 'wachtwoord', 'David', 'Schouten', 'Client'),
-('hdeleeuw', 'wachtwoord', 'Hanna', 'de Leeuw', 'Client'),
-('pvanveen', 'wachtwoord', 'Peter', 'van Veen', 'Personnel'),
-('adekhane', 'wachtwoord', 'Ahmed', 'Dekhane', 'Client'), 
-('mbouaziz', 'wachtwoord', 'Mouna', 'Bouaziz', 'Client'), 
-('tbayrak', 'wachtwoord', 'Tarik', 'Bayrak', 'Personnel'), 
-('ayildiz', 'wachtwoord', 'Aylin', 'Yildiz', 'Personnel'), 
-('rnarsingh', 'wachtwoord', 'Rajesh', 'Narsingh', 'Client'), 
-('sdurga', 'wachtwoord', 'Shanti', 'Durga', 'Client'), 
-('mkassem', 'wachtwoord', 'Mohammed', 'Kassem', 'Personnel'), 
-('lsaleh', 'wachtwoord', 'Lina', 'Saleh', 'Personnel'), 
-('aghebre', 'wachtwoord', 'Amanuel', 'Ghebre', 'Client'), 
-('mtsega', 'wachtwoord', 'Miriam', 'Tsega', 'Client'), 
-('pkowalski', 'wachtwoord', 'Piotr', 'Kowalski', 'Personnel'), 
-('aivanov', 'wachtwoord', 'Alexei', 'Ivanov', 'Personnel'), 
-('mkarimi', 'wachtwoord', 'Mina', 'Karimi', 'Client'), 
-('hradman', 'wachtwoord', 'Hassan', 'Radman', 'Client'), 
-('lbaloyi', 'wachtwoord', 'Lerato', 'Baloyi', 'Personnel'), 
-('dpetrov', 'wachtwoord', 'Dmitri', 'Petrov', 'Personnel'), 
-('ibrahimovic', 'wachtwoord', 'Ismail', 'Brahimovic', 'Client'), 
-('snovak', 'wachtwoord', 'Sanja', 'Novak', 'Client'), 
-('yabebe', 'wachtwoord', 'Yonas', 'Abebe', 'Personnel'), 
-('ngebre', 'wachtwoord', 'Nardos', 'Gebre', 'Personnel'); 
+INSERT INTO [User] (username, [password], first_name, last_name, [role], address) VALUES
+('jdoe', 'wachtwoord', 'John', 'Doe', 'Client', 'Bakkerstraat 1, 6811EG, Arnhem'),
+('mvermeer', 'wachtwoord', 'Maria', 'Vermeer', 'Client', 'Jansplein 2, 6811GD, Arnhem'),
+('rdeboer', 'wachtwoord', 'Rik', 'de Boer', 'Personnel', 'Willemsplein 3, 6811KD, Arnhem'),
+('sbakker', 'wachtwoord', 'Sophie', 'Bakker', 'Personnel', 'Kerkstraat 4, 6811DW, Arnhem'),
+('fholwerda', 'wachtwoord', 'Fenna', 'Holwerda', 'Client', 'Rijnkade 5, 6811HA, Arnhem'),
+('kdijkstra', 'wachtwoord', 'Klaas', 'Dijkstra', 'Client', 'Grote Markt 6, 6511KB, Nijmegen'),
+('lheineken', 'wachtwoord', 'Lucas', 'Heineken', 'Personnel', 'Sint Annastraat 7, 6524EZ, Nijmegen'),
+('mvandam', 'wachtwoord', 'Mila', 'van Dam', 'Personnel', 'Oranjesingel 8, 6511NV, Nijmegen'),
+('gkoolstra', 'wachtwoord', 'Gert', 'Koolstra', 'Client', 'Van Welderenstraat 9, 6511MS, Nijmegen'),
+('evisscher', 'wachtwoord', 'Emma', 'Visscher', 'Client', 'Molenstraat 10, 6511HJ, Nijmegen'),
+('tjanssen', 'wachtwoord', 'Tom', 'Janssen', 'Personnel', 'Velperweg 11, 6814AD, Arnhem'),
+('abrouwer', 'wachtwoord', 'Anna', 'Brouwer', 'Personnel', 'Geitenkamp 12, 6815AP, Arnhem'),
+('wbos', 'wachtwoord', 'Willem', 'Bos', 'Client', 'IJssellaan 13, 6821DJ, Arnhem'),
+('tvandermeer', 'wachtwoord', 'Tessa', 'van der Meer', 'Client', 'Broekstraat 14, 6822GD, Arnhem'),
+('rkramer', 'wachtwoord', 'Rob', 'Kramer', 'Personnel', 'Apeldoornsestraat 15, 6828AJ, Arnhem'),
+('mnijland', 'wachtwoord', 'Maud', 'Nijland', 'Personnel', 'Marialaan 16, 6541RP, Nijmegen'),
+('dschouten', 'wachtwoord', 'David', 'Schouten', 'Client', 'Smetiusstraat 17, 6511EP, Nijmegen'),
+('hdeleeuw', 'wachtwoord', 'Hanna', 'de Leeuw', 'Client', 'Van Oldenbarneveltstraat 18, 6511PA, Nijmegen'),
+('pvanveen', 'wachtwoord', 'Peter', 'van Veen', 'Personnel', 'Hertogstraat 19, 6511RV, Nijmegen'),
+('adekhane', 'wachtwoord', 'Ahmed', 'Dekhane', 'Client', 'Van Schaeck Mathonsingel 20, 6512AP, Nijmegen'), 
+('mbouaziz', 'wachtwoord', 'Mouna', 'Bouaziz', 'Client', 'Lange Hezelstraat 21, 6511CM, Nijmegen'), 
+('tbayrak', 'wachtwoord', 'Tarik', 'Bayrak', 'Personnel', 'Waalkade 22, 6511XR, Nijmegen'), 
+('ayildiz', 'wachtwoord', 'Aylin', 'Yildiz', 'Personnel', 'Sint Jacobslaan 23, 6533BT, Nijmegen'), 
+('rnarsingh', 'wachtwoord', 'Rajesh', 'Narsingh', 'Client', 'Van Broeckhuysenstraat 24, 6511PE, Nijmegen'), 
+('sdurga', 'wachtwoord', 'Shanti', 'Durga', 'Client', 'Ziekerstraat 25, 6511LH, Nijmegen'), 
+('mkassem', 'wachtwoord', 'Mohammed', 'Kassem', 'Personnel', 'Bakkerstraat 26, 6811EG, Arnhem'), 
+('lsaleh', 'wachtwoord', 'Lina', 'Saleh', 'Personnel', 'Jansplein 27, 6811GD, Arnhem'), 
+('aghebre', 'wachtwoord', 'Amanuel', 'Ghebre', 'Client', 'Willemsplein 28, 6811KD, Arnhem'), 
+('mtsega', 'wachtwoord', 'Miriam', 'Tsega', 'Client', 'Kerkstraat 29, 6811DW, Arnhem'), 
+('pkowalski', 'wachtwoord', 'Piotr', 'Kowalski', 'Personnel', 'Rijnkade 30, 6811HA, Arnhem'), 
+('aivanov', 'wachtwoord', 'Alexei', 'Ivanov', 'Personnel', 'Grote Markt 31, 6511KB, Nijmegen'), 
+('mkarimi', 'wachtwoord', 'Mina', 'Karimi', 'Client', 'Sint Annastraat 32, 6524EZ, Nijmegen'), 
+('hradman', 'wachtwoord', 'Hassan', 'Radman', 'Client', 'Oranjesingel 33, 6511NV, Nijmegen'), 
+('lbaloyi', 'wachtwoord', 'Lerato', 'Baloyi', 'Personnel', 'Van Welderenstraat 34, 6511MS, Nijmegen'), 
+('dpetrov', 'wachtwoord', 'Dmitri', 'Petrov', 'Personnel', 'Molenstraat 35, 6511HJ, Nijmegen'), 
+('ibrahimovic', 'wachtwoord', 'Ismail', 'Brahimovic', 'Client', 'Velperweg 36, 6814AD, Arnhem'), 
+('snovak', 'wachtwoord', 'Sanja', 'Novak', 'Client', 'Geitenkamp 37, 6815AP, Arnhem'), 
+('yabebe', 'wachtwoord', 'Yonas', 'Abebe', 'Personnel', 'IJssellaan 38, 6821DJ, Arnhem'), 
+('ngebre', 'wachtwoord', 'Nardos', 'Gebre', 'Personnel', 'Broekstraat 39, 6822GD, Arnhem'); 
 
 -- Insert statements for product types
 INSERT INTO ProductType ([name]) VALUES
